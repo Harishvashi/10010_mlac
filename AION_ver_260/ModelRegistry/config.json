@@ -1,0 +1,9 @@
+{
+    "problem_type": "classification",
+    "modelVersion": "1",
+    "targetPath": "AION_ver_260",
+    "models": [
+        "LogisticRegression_MLBased",
+        "GaussianNB_MLBased"
+    ]
+}

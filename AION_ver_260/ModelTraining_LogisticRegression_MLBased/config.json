@@ -1,0 +1,64 @@
+{
+    "problem_type": "classification",
+    "modelVersion": "1",
+    "target_feature": "Species",
+    "train_ratio": 0.8,
+    "optimization_param": {
+        "iterations": 100,
+        "trainTestCVSplit": 5,
+        "geneticparams": {
+            "n_population": 50,
+            "crossover_proba": 0.5,
+            "mutation_proba": 0.2,
+            "crossover_independent_proba": 0.5,
+            "mutation_independent_proba": 0.05,
+            "tournament_size": 3,
+            "n_gen_no_change": 10
+        }
+    },
+    "train_features": [
+        "PetalLengthCm",
+        "PetalWidthCm",
+        "SepalLengthCm",
+        "SepalWidthCm"
+    ],
+    "scoring_criteria": "accuracy",
+    "algorithms": {
+        "LogisticRegression": {
+            "C": [
+                0.001,
+                0.05357894736842105,
+                0.1061578947368421,
+                0.15873684210526315,
+                0.2113157894736842,
+                0.26389473684210524,
+                0.3164736842105263,
+                0.36905263157894735,
+                0.4216315789473684,
+                0.47421052631578947,
+                0.5267894736842105,
+                0.5793684210526315,
+                0.6319473684210526,
+                0.6845263157894736,
+                0.7371052631578947,
+                0.7896842105263158,
+                0.8422631578947368,
+                0.8948421052631579,
+                0.9474210526315789,
+                1.0
+            ],
+            "penalty": [
+                "l1",
+                "l2"
+            ],
+            "class_weight": [
+                "balanced"
+            ],
+            "solver": [
+                "lbfgs",
+                "saga"
+            ]
+        }
+    },
+    "targetPath": "AION_ver_260"
+}

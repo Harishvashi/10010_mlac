@@ -1,0 +1,41 @@
+name: gh-acr-AION_ver_260
+on: 
+  push:
+    branches: main
+    paths: AION_ver_260/**
+  workflow_dispatch:
+jobs:
+  gh-acr-build-push:
+    runs-on: ubuntu-latest 
+    steps:
+    - name: 'checkout action'
+      uses: actions/checkout@main
+    
+    - name: 'azure login'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - name: 'build and push image'
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+    - run:  |
+        docker build ./AION_ver_260/ModelMonitoring -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/modelmonitoring:AION_ver_260
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/modelmonitoring:AION_ver_260
+        docker build ./AION_ver_260/DataIngestion -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/dataingestion:AION_ver_260
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/dataingestion:AION_ver_260		
+        docker build ./AION_ver_260/DataTransformation -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/datatransformation:AION_ver_260
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/datatransformation:AION_ver_260
+        docker build ./AION_ver_260/FeatureEngineering -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/featureengineering:AION_ver_260
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/featureengineering:AION_ver_260
+        docker build ./AION_ver_260/ModelRegistry -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/modelregistry:AION_ver_260
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/modelregistry:AION_ver_260		
+        docker build ./AION_ver_260/ModelServing -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/modelserving:AION_ver_260
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/modelserving:AION_ver_260		
+        docker build ./AION_ver_260/ModelTraining_GaussianNB_MLBased -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/modeltraining_gaussiannb_mlbased:AION_ver_260
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/modeltraining_gaussiannb_mlbased:AION_ver_260
+        docker build ./AION_ver_260/ModelTraining_LogisticRegression_MLBased -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/modeltraining_logisticregression_mlbased:AION_ver_260
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/modeltraining_logisticregression_mlbased:AION_ver_260

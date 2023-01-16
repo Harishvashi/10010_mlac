@@ -1,0 +1,13 @@
+{
+    "problem_type": "classification",
+    "modelVersion": "1",
+    "target_feature": "Species",
+    "n_components": 0,
+    "train_features": [
+        "PetalLengthCm",
+        "PetalWidthCm",
+        "SepalLengthCm",
+        "SepalWidthCm"
+    ],
+    "targetPath": "AION_ver_260"
+}
